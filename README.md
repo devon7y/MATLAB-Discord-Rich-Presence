@@ -66,3 +66,5 @@ This approach is necessary because MATLAB cannot directly interface with Discord
 -   **"pypresence not installed"**: If the automatic installation fails, open a terminal or command prompt and run: `pip install pypresence`.
 -   **Status not updating**: Make sure Discord is running and that you have enabled "Display current activity as a status message" in Discord's settings (User Settings > Activity Privacy).
 
+[![View Discord Rich Presence on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/181627-discord-rich-presence)
+
