@@ -15,7 +15,7 @@ This toolbox integrates Discord Rich Presence with MATLAB, allowing you to displ
 ## Installation
 
 1.  **Install the Toolbox**:
-    -   Download the `.mltbx` file from the [releases page](https://github.com/devonyanitski/discord-rich-presence/releases).
+    -   Download the `.mltbx` file from the [releases page](https://github.com/devon7y/MATLAB-Discord-Rich-Presence/releases/tag/v1.0.0).
     -   Double-click the `.mltbx` file or drag it into the MATLAB command window.
     -   Follow the on-screen instructions to complete the installation.
 
