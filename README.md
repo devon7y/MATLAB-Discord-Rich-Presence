@@ -4,6 +4,8 @@
 
 This toolbox integrates Discord Rich Presence with MATLAB, allowing you to display the `.m` file you are currently editing in your Discord status. It automatically updates as you switch between files, similar to the VS Code "vscord" extension.
 
+![Demo Image](MATLAB-Discord-Rich-Presence-Demo.png)
+
 ## Features
 
 - **Automatic Detection**: Shows the currently active file in the MATLAB editor.
