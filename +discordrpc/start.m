@@ -65,13 +65,10 @@ function start()
     end
 
     % Launch Python script in background using nohup to ensure persistence
-    % Redirect output to /dev/null and echo PID for capture
-    command = sprintf('nohup "%s" "%s" "%s" "%s" > /dev/null 2>&1 & echo $!', pythonExecutable, pythonScriptPath, commFilePath, currentFile);
+    % Redirect output to /dev/null
+    command = sprintf('nohup "%s" "%s" "%s" "%s" > /dev/null 2>&1 &', pythonExecutable, pythonScriptPath, commFilePath, currentFile);
     
-    [status, cmdout] = system(command); % Capture PID
-    pid = str2double(strtrim(cmdout)); % Extract PID from cmdout
-    assignin('base', 'discordRPCPid', pid); % Store PID for stop.m
-
+    [status, cmdout] = system(command); % Launch command
     if status ~= 0
         warning('Discord RPC: Failed to launch Python script (status %d): %s', status, cmdout);
         return;

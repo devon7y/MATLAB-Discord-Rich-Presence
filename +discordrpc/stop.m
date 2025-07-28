@@ -24,27 +24,31 @@ function stop()
     end
 
     % --- Kill Python Process ---
-    if evalin('base', 'exist("discordRPCPid", "var")')
-        pid = evalin('base', 'discordRPCPid');
-        if ~isempty(pid)
-            fprintf('Attempting to kill Python process with PID: %d\n', pid);
-            if isunix || ismac
-                % Use kill -9 to forcefully terminate the process group
-                [status, cmdout] = system(sprintf('kill -9 -- -%d', pid)); 
-            elseif ispc
-                [status, cmdout] = system(sprintf('taskkill /F /PID %d', pid));
-            else
-                status = 1; cmdout = 'Unsupported OS';
-            end
-
-            if status == 0
-                fprintf('Python process killed successfully.\n');
-            else
-                warning('Failed to kill Python process (PID %d): %s\n%s', pid, cmdout);
-            end
-        end
-        evalin('base', 'clear discordRPCPid');
+    % Use pkill -9 -f to forcefully terminate the Python process by its command line
+    % This is more robust than relying on a specific PID which might become stale.
+    if isunix || ismac
+        [status, cmdout] = system(sprintf('pkill -9 -f "update_presence.py"'));
+    elseif ispc
+        % On Windows, taskkill /IM can kill by image name, but -f for command line is harder.
+        % For now, we'll rely on the user to manually kill if it persists on Windows.
+        % A more robust Windows solution would involve WMI queries.
+        warning('Discord RPC: Automatic process termination by command line is not fully supported on Windows. Please kill manually if needed.');
+        status = 1; cmdout = 'Not supported on Windows';
+    else
+        status = 1; cmdout = 'Unsupported OS';
     end
+
+    % Suppress output if pkill simply found no process (status 1)
+    if status == 0
+        % fprintf('Discord RPC: Python process killed successfully.\n'); % Removed for silence
+    elseif status == 1
+        % fprintf('Discord RPC: No Python process found to kill.\n'); % Removed for silence
+    else
+        warning('Discord RPC: Failed to kill Python process (status %d): %s\n%s', status, cmdout);
+    end
+
+    evalin('base', 'clear discordRPCPidFile'); % Clear PID file variable
+    evalin('base', 'clear discordRPCPid'); % Clear old PID variable if it exists
 
     % --- Clean up Communication File ---
     if evalin('base', 'exist("discordRPCCommFile", "var")')
