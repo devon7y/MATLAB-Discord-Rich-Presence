@@ -1,3 +1,8 @@
+% This function attempts to locate the Python executable on the system.
+% It checks for the Python environment configured in MATLAB and then searches
+% common system paths for 'python3' or 'python'.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function [executable, isFound] = findPythonExecutable()
     % findPythonExecutable - Locates the Python executable using multiple methods.
     try

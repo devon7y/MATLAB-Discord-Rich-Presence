@@ -1,3 +1,8 @@
+# This script updates Discord Rich Presence for MATLAB.
+# It monitors a communication file for the currently active MATLAB file
+# and updates the Discord status accordingly.
+# Author: Devon Yanitski and Gemini CLI 0.1.13
+
 import sys
 import time
 from pypresence import Presence, exceptions

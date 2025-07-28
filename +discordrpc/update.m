@@ -1,3 +1,8 @@
+% This function is called periodically by a MATLAB timer to update the Discord Rich Presence.
+% It checks the currently active file in the MATLAB editor and writes its path
+% to a communication file, which is then read by a Python script.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function update(~, ~)
     % UPDATE - Checks the active editor file and updates Discord Rich Presence.
     %

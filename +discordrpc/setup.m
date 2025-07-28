@@ -1,3 +1,8 @@
+% This function sets up the Discord Rich Presence integration for MATLAB.
+% It checks for Python and the 'pypresence' library, and configures MATLAB's
+% startup and finish scripts to automatically start and stop the presence.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function setup()
     % SETUP - Configures the Discord Rich Presence integration.
 

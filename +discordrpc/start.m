@@ -1,3 +1,8 @@
+% This function initializes the Discord Rich Presence integration for MATLAB.
+% It starts a Python script in the background to manage the Discord presence
+% and sets up a MATLAB timer to periodically update the active file information.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function start()
     % START - Initializes the Discord Rich Presence integration.
     %

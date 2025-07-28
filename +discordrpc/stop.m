@@ -1,3 +1,8 @@
+% This function stops the Discord Rich Presence integration.
+% It stops and deletes the MATLAB timer, attempts to kill the associated Python process,
+% and cleans up the communication file.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function stop()
     % STOP - Stops the Discord Rich Presence integration.
     %

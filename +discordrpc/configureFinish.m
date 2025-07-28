@@ -1,3 +1,7 @@
+% This script configures the MATLAB finish.m file to stop the Discord Rich Presence
+% when MATLAB closes.
+% Author: Devon Yanitski and Gemini CLI 0.1.13
+
 function success = configureFinish()
     finishFile = fullfile(userpath, 'finish.m');
     stopCommand = 'discordrpc.stop();';
