@@ -10,7 +10,6 @@ function setup()
         fprintf('See MATLAB documentation for ''pyenv'' for more details.\n');
         return;
     end
-    fprintf('Python executable found: %s\n', pythonExecutable);
 
     % --- pypresence Library Check ---
     if ~isPypresenceInstalled(pythonExecutable)
@@ -26,7 +25,6 @@ function setup()
             return;
         end
     end
-    fprintf('pypresence library is installed.\n');
 
     % --- startup.m Configuration ---
     if ~configureStartup()

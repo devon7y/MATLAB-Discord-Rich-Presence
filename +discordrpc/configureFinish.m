@@ -13,7 +13,7 @@ function success = configureFinish()
     
     try
         fid = fopen(finishFile, 'a+');
-        fwrite(fid, '%% Debug: Executing finish.m for Discord RPC cleanup.\n'); % Debugging line
+        fprintf(fid, '\n%% Stop Discord Rich Presence integration\n');
         fprintf(fid, '%s\n', stopCommand);
         fclose(fid);
         fprintf('Added finish command to: %s\n', finishFile);

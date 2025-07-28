@@ -15,9 +15,12 @@ function start()
     % Stop any existing timers with the same name to prevent duplicates
     existingTimers = timerfind('Name', timerName);
     if ~isempty(existingTimers)
-        stop(existingTimers);
-        delete(existingTimers);
-        fprintf('Stopped and removed existing Discord RPC timer.\n');
+        try
+            stop(existingTimers);
+            delete(existingTimers);
+        catch e
+            warning('An error occurred while trying to stop the timer.\n%s', e.message);
+        end
     end
 
     % --- Python Process Management ---

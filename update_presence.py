@@ -4,16 +4,13 @@ from pypresence import Presence, exceptions
 import os
 
 def update_presence_loop(client_id, comm_file_path, initial_file_name):
-    print(f"[Python RPC] Starting presence loop. Comm file: {comm_file_path}")
     RPC = None
     current_file = initial_file_name
     last_mtime = 0
 
     try:
         RPC = Presence(client_id)
-        print("[Python RPC] Connecting to Discord...")
         RPC.connect()
-        print("[Python RPC] Connected to Discord.")
         start_time = int(time.time()) # Initialize start_time once
         last_details_text = None
         last_state_text = None
@@ -29,7 +26,6 @@ def update_presence_loop(client_id, comm_file_path, initial_file_name):
                         if updated_file != current_file:
                             current_file = updated_file
                             last_mtime = new_mtime
-                            print(f"[Python RPC] Detected file change in comm file: {current_file}")
 
                 # Determine current presence details
                 if current_file:
@@ -50,34 +46,30 @@ def update_presence_loop(client_id, comm_file_path, initial_file_name):
                     )
                     last_details_text = details_text
                     last_state_text = state_text
-                    print(f"[Python RPC] Presence updated: Details='{details_text}', State='{state_text}'")
 
             except exceptions.PipeClosed:
-                print("[Python RPC] Discord pipe closed. Attempting to reconnect...")
                 try:
                     RPC.connect()
-                    print("[Python RPC] Reconnected to Discord.")
                     # Force update after reconnect
                     last_details_text = None
                     last_state_text = None
                 except Exception as reconnect_e:
-                    print(f"[Python RPC] Reconnection failed: {reconnect_e}. Retrying in 15s.")
+                    pass # Fail silently on reconnect errors
             except Exception as e:
-                print(f"[Python RPC] Error during update loop: {e}")
+                pass # Fail silently on other errors
             
             time.sleep(5) # Check and update every 5 seconds
 
     except exceptions.PipeClosed as e:
-        print(f"[Python RPC] Initial connection failed: Discord pipe closed. Is Discord running? {e}")
+        pass # Fail silently on initial connection errors
     except Exception as e:
-        print(f"[Python RPC] An unexpected error occurred during initial setup: {e}")
+        pass # Fail silently on other initial setup errors
     finally:
         if RPC:
             try:
                 RPC.close()
-                print("[Python RPC] Discord connection closed.")
             except Exception as close_e:
-                print(f"[Python RPC] Error closing RPC connection: {close_e}")
+                pass # Fail silently on close errors
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -93,5 +85,4 @@ if __name__ == "__main__":
     if comm_file_path:
         update_presence_loop(client_id, comm_file_path, initial_file_name)
     else:
-        print("[Python RPC] Error: Communication file path not provided.")
         sys.exit(1)

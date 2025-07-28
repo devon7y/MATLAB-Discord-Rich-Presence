@@ -24,7 +24,6 @@ function [executable, isFound] = findPythonExecutable()
             executable = strsplit(strtrim(result), '\n');
             executable = executable{1};
             isFound = true;
-            fprintf('Found Python in system PATH: %s\n', executable);
             return;
         end
     end

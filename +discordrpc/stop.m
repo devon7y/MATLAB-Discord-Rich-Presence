@@ -15,7 +15,6 @@ function stop()
         try
             stop(existingTimers);
             delete(existingTimers);
-            fprintf('Discord Rich Presence timer stopped.\n');
         catch e
             warning('An error occurred while trying to stop the timer.\n%s', e.message);
         end
@@ -56,7 +55,6 @@ function stop()
         if exist(commFilePath, 'file')
             try
                 delete(commFilePath);
-                fprintf('Communication file deleted: %s\n', commFilePath);
             catch e
                 warning('Failed to delete communication file: %s\n%s', commFilePath, e.message);
             end
