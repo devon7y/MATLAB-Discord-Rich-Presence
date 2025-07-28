@@ -1,0 +1,12 @@
++discordrpc/._configureFinish.m
++discordrpc/._findPythonExecutable.m
++discordrpc/._setup.m
++discordrpc/._start.m
++discordrpc/._stop.m
++discordrpc/._update.m
+._+discordrpc
+._.git
+._.gitignore
+._README.md
+._toolbox.prj
+._update_presence.py
