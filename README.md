@@ -1,6 +1,6 @@
 # MATLAB Discord Rich Presence Integration
 
-**Author**: Devon Yanitski and Gemini CLI 0.1.13 [![View Discord Rich Presence on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/181627-discord-rich-presence)
+**Author**: Devon Yanitski and Gemini CLI 0.1.13     [![View Discord Rich Presence on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/181627-discord-rich-presence)
 
 This toolbox integrates Discord Rich Presence with MATLAB, allowing you to display the `.m` file you are currently editing in your Discord status. It automatically updates as you switch between files, similar to the VS Code "vscord" extension.
 
